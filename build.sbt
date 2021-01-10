@@ -1,0 +1,36 @@
+name := "akka-http-petstore"
+organization := "io.github.manuzhang"
+scalaVersion := "2.12.12"
+version := "0.1.0-SNAPSHOT"
+
+lazy val akkaHttpVersion = "10.2.1"
+lazy val akkaVersion = "2.6.10"
+libraryDependencies ++= Seq(
+  "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
+  "ch.megard" %% "akka-http-cors" % "1.1.1",
+  "com.typesafe.akka" %% "akka-stream" % akkaVersion,
+  "com.lihaoyi" %% "upickle" % "1.1.0",
+  "org.rogach" %% "scallop" % "3.5.1",
+  "io.getquill" %% "quill-jdbc" % "3.5.3",
+  "mysql" % "mysql-connector-java" % "8.0.17",
+  "com.h2database" % "h2" % "1.4.199",
+  "ch.qos.logback" % "logback-classic" % "1.2.3",
+  "co.pragmati" %% "swagger-ui-akka-http" % "1.2.0",
+  "fr.davit" %% "akka-http-metrics-prometheus" % "1.4.1",
+  "org.scalatest" %% "scalatest" % "3.2.2" % "test",
+  "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpVersion % "test",
+  "com.typesafe.akka" %% "akka-stream-testkit" % akkaVersion % "test"
+)
+
+mainClass in Compile := Some("io.github.manuzhang.petstore.Service")
+discoveredMainClasses in Compile := Seq()
+Test / fork := true
+
+addCompilerPlugin(scalafixSemanticdb)
+ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.4.4"
+scalacOptions ++= Seq(
+  "-feature",
+  "-language:existentials",
+  "-Ywarn-unused-import",
+  "-Xfatal-warnings"
+)
