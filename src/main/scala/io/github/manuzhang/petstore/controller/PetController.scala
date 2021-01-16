@@ -1,10 +1,11 @@
 package io.github.manuzhang.petstore.controller
 
 import akka.http.scaladsl.server.Directives._
+import akka.http.scaladsl.server.Route
 import io.github.manuzhang.petstore.model.Pet
 import io.github.manuzhang.petstore.model.Pet.Status.Status
 
-class PetController {
+object PetController {
 
   pathPrefix("pet") {
     concat(
@@ -18,10 +19,7 @@ class PetController {
           },
           put {
             entityAs[Pet] { pet =>
-              store.updatePet(pet) match {
-                case Some(_) => reply(pet)
-                case None => reply404("Pet not found")
-              }
+              replyPet(store.updatePet(pet))
             }
           }
         )
@@ -42,19 +40,28 @@ class PetController {
         }
         concat(
           get {
-            store.getPet(id) match {
-              case Some(pet) => reply(pet)
-              case None => reply404("Pet not found")
+            replyPet(store.getPet(id))
+          },
+          post {
+            parameters("name".optional, "status".optional) {
+              (name, status) => {
+                replyPet(store.updatePet(id, name, status))
+              }
             }
+            
           },
           delete {
-            store.deletePet(id) match {
-              case Some(pet) => reply200
-              case None => reply404("Pet not found")
-            }
+            replyPet(store.deletePet(id))
           }
         )
       }
     )
+  }
+  
+  private def replyPet(pet: Option[Pet]): Route = {
+    pet match {
+      case Some(p) => reply(p)
+      case None => reply404("Pet not found")
+    }
   }
 }

@@ -18,5 +18,16 @@ CREATE TABLE IF NOT EXISTS pet_table (
     photo_url VARCHAR(256) NOT NULL
 )
 
+CREATE TABLE IF NOT EXISTS user (
+    id BIGINT NOT NULL,
+    username VARCHAR(64) NOT NULL,
+    firstName VARCHAR(32) NOT NULL,
+    lastName VARCHAR(32) NOT NULL,
+    email VARCHAR(64) NOT NULL,
+    password VARCHAR(32) NOT NULL,
+    phone VARCHAR(16) NOT NULL,
+    userStatus INT NOT NULL
+)
+
 
 

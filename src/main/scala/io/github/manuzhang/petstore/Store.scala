@@ -51,11 +51,23 @@ class Store {
   def addPet(pet: Pet): Unit = {
     ctx.run(liftQuery(pet.petTable).foreach(p => query[PetTable].insert(p)))
   }
-
+  
   def updatePet(pet: Pet): Option[Pet] = {
     ctx.transaction {
       getPet(pet.id).headOption.map { _ =>
-        addPet(pet)
+        liftQuery(pet.petTable).foreach(p => query[PetTable].update(p))
+        pet
+      }
+    }
+  }
+  
+  def updatePet(id: Long, name: Option[String], status: Option[String]): Option[Pet] = {
+    ctx.transaction {
+      getPet(id).headOption.map { pet =>
+        var p = pet
+        name.foreach(n => p = p.copy(name = n))
+        status.foreach(s => p = p.copy(status = Status.withName(s)))
+        liftQuery(pet.petTable).foreach(p => query[PetTable].update(p))
         pet
       }
     }
@@ -66,6 +78,32 @@ class Store {
       getPet(petId).headOption.map { pet =>
         ctx.run(query[PetTable].filter(_.id == lift(petId)).delete)
         pet
+      }
+    }
+  }
+  
+  def addUser(user: User): Unit = {
+    ctx.run(query[User].insert(lift(user)))
+  }
+  
+  def getUser(username: String): Option[User] = {
+    ctx.run(query[User].filter(u => u.username == lift(username)))
+  }
+  
+  def updateUser(username: String, user: User): Option[User] = {
+    ctx.transaction {
+      getUser(username).headOption.map { prev =>
+        ctx.run(query[User].update(lift(user)))
+        prev
+      }
+    }
+  }
+  
+  def deleteUser(username: String): Option[User] = {
+    ctx.transaction {
+      getUser(username).headOption.map { user =>
+        ctx.run(query[User].filter(_.username == lift(username)).delete)
+        user
       }
     }
   }
