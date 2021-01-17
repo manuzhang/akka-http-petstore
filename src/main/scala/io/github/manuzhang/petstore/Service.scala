@@ -1,9 +1,9 @@
 package io.github.manuzhang.petstore
 
 import akka.actor.ActorSystem
+import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.{ExceptionHandler, Route}
-import akka.http.scaladsl.Http
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives.cors
 import com.github.swagger.akka.SwaggerSite
 import fr.davit.akka.http.metrics.core.HttpMetrics.enrichHttp
@@ -11,13 +11,12 @@ import fr.davit.akka.http.metrics.core.HttpMetricsRegistry
 import fr.davit.akka.http.metrics.core.scaladsl.server.HttpMetricsDirectives.pathLabeled
 import fr.davit.akka.http.metrics.prometheus.{PrometheusRegistry, PrometheusSettings}
 import io.github.manuzhang.petstore.controller.OrderController
-
-import scala.concurrent.Await
-import scala.concurrent.duration.Duration
-import scala.util.{Failure, Success}
 import io.prometheus.client.CollectorRegistry
 import org.rogach.scallop.ScallopConf
 import org.slf4j.{Logger, LoggerFactory}
+import scala.concurrent.Await
+import scala.concurrent.duration.Duration
+import scala.util.{Failure, Success}
 
 object Service extends SwaggerSite {
 
@@ -48,7 +47,7 @@ object Service extends SwaggerSite {
       complete(StatusCodes.OK, s"Hi")
     }
   }
-  
+
   def swagger: Route = {
     concat(
       // this path is required by swaggerSiteRoute
@@ -58,7 +57,7 @@ object Service extends SwaggerSite {
       swaggerSiteRoute
     )
   }
-  
+
   def run(port: Int): Unit = {
     val metricsRegistry = prometheusRegistry
     val route = cors() {

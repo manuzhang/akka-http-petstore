@@ -51,11 +51,11 @@ object OrderController {
       )
     }
   }
-    
+
   private def getCountByStatus: Map[String, Int] = {
     val orders = store.getOrders
-    orders.groupBy(_.status.toString).mapValues(_.foldLeft(0){ case (total, order) =>
+    orders.groupBy(_.status.toString).mapValues(_.foldLeft(0) { case (total, order) =>
       total + order.quantity
-    }) 
+    })
   }
 }

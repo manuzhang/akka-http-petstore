@@ -5,9 +5,9 @@ import akka.http.scaladsl.server.Route
 import io.github.manuzhang.petstore.model.User
 
 object UserController {
-  
+
   pathPrefix("user") {
-    concat( 
+    concat(
       pathEnd {
         post {
           entityAs[User] { user =>
@@ -43,13 +43,11 @@ object UserController {
       }
     )
   }
-  
+
   private def replyUser(user: Option[User]): Route = {
     user match {
       case Some(u) => reply(u)
       case None => reply404("User not found")
     }
-    
   }
-
 }

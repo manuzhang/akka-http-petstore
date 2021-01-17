@@ -9,14 +9,14 @@ object Pet {
   implicit val cateRw: ReadWriter[Category] = macroRW[Category]
   implicit val statusRw: ReadWriter[Status] =
     readwriter[String].bimap[Status](_.toString, Status.withName)
-    
+
   object Status extends Enumeration {
     type Status = Value
     val Available: Value = Value("available")
     val Pending: Value = Value("pending")
     val Solid: Value = Value("solid")
   }
-  
+
   def toPet(pts: List[PetTable]): Option[Pet] = {
     toPets(pts).headOption
   }
@@ -42,7 +42,7 @@ object Pet {
 
 case class Pet(id: Long, category: Category, name: String,
   photoUrls: List[String], tags: List[Tag], status: Status) {
-  
+
   def petTable: List[PetTable] = for {
     url <- photoUrls
     tag <- tags
