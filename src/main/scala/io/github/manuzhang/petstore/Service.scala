@@ -10,7 +10,7 @@ import fr.davit.akka.http.metrics.core.HttpMetrics.enrichHttp
 import fr.davit.akka.http.metrics.core.HttpMetricsRegistry
 import fr.davit.akka.http.metrics.core.scaladsl.server.HttpMetricsDirectives.pathLabeled
 import fr.davit.akka.http.metrics.prometheus.{PrometheusRegistry, PrometheusSettings}
-import io.github.manuzhang.petstore.controller.OrderController
+import io.github.manuzhang.petstore.controller.{OrderController, PetController, UserController}
 import io.prometheus.client.CollectorRegistry
 import org.rogach.scallop.ScallopConf
 import org.slf4j.{Logger, LoggerFactory}
@@ -44,17 +44,22 @@ object Service extends SwaggerSite {
 
   def hello: Route = get {
     pathLabeled(PathEnd) {
-      complete(StatusCodes.OK, s"Hi")
+      complete(StatusCodes.OK, s"Hi, Welcome to the Pet Store")
     }
   }
 
   def swagger: Route = {
     concat(
       // this path is required by swaggerSiteRoute
-      path("api-docs" / "swagger.json") {
+      path("api-docs" / "openapi.yaml") {
         getFromResource("openapi.yaml")
       },
-      swaggerSiteRoute
+      path("swagger") {
+        concat(
+          getFromResource("swagger-ui/index.html"),
+          getFromResourceDirectory("swagger-ui")
+        )
+      }
     )
   }
 
@@ -66,7 +71,11 @@ object Service extends SwaggerSite {
           hello,
           swagger,
           pathPrefix("v3") {
-            OrderController.route
+            concat(
+              UserController.route,
+              OrderController.route,
+              PetController.route
+            )
           }
         )
       }

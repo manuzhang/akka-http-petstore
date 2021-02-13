@@ -54,20 +54,20 @@ class Store {
 
   def updatePet(pet: Pet): Option[Pet] = {
     ctx.transaction {
-      getPet(pet.id).headOption.map { _ =>
-        liftQuery(pet.petTable).foreach(query[PetTable].update)
+      getPet(pet.id).map { _ =>
+        doUpdatePet(pet)
         pet
       }
     }
   }
 
-  def updatePet(id: Long, name: Option[String], status: Option[String]): Option[Pet] = {
+  def updatePet(id: Long, name: Option[String], status: Option[Status]): Option[Pet] = {
     ctx.transaction {
-      getPet(id).headOption.map { pet =>
+      getPet(id).map { pet =>
         var p = pet
         name.foreach(n => p = p.copy(name = n))
-        status.foreach(s => p = p.copy(status = Status.withName(s)))
-        liftQuery(pet.petTable).foreach(query[PetTable].update)
+        status.foreach(s => p = p.copy(status = s))
+        doUpdatePet(pet)
         pet
       }
     }
@@ -75,17 +75,20 @@ class Store {
 
   def updatePet(id: Long, photoUrl: String): Option[Pet] = {
     ctx.transaction {
-      getPet(id).headOption.map { pet =>
-        val p = pet.copy(photoUrls = pet.photoUrls :+ photoUrl)
-        liftQuery(pet.petTable).foreach(query[PetTable].update)
+      getPet(id).map { pet =>
+        doUpdatePet(pet.copy(photoUrls = pet.photoUrls :+ photoUrl))
         pet
       }
     }
   }
+  
+  private def doUpdatePet(pet: Pet): Unit = {
+    ctx.run(liftQuery(pet.petTable).foreach(p => query[PetTable].update(p)))
+  }
 
   def deletePet(petId: Long): Option[Pet] = {
     ctx.transaction {
-      getPet(petId).headOption.map { pet =>
+      getPet(petId).map { pet =>
         ctx.run(query[PetTable].filter(_.id == lift(petId)).delete)
         pet
       }
@@ -97,12 +100,12 @@ class Store {
   }
 
   def getUser(username: String): Option[User] = {
-    ctx.run(query[User].filter(u => u.username == lift(username)))
+    ctx.run(query[User].filter(u => u.username == lift(username))).headOption
   }
 
   def updateUser(username: String, user: User): Option[User] = {
     ctx.transaction {
-      getUser(username).headOption.map { prev =>
+      getUser(username).map { prev =>
         ctx.run(query[User].update(lift(user)))
         prev
       }
@@ -111,7 +114,7 @@ class Store {
 
   def deleteUser(username: String): Option[User] = {
     ctx.transaction {
-      getUser(username).headOption.map { user =>
+      getUser(username).map { user =>
         ctx.run(query[User].filter(_.username == lift(username)).delete)
         user
       }

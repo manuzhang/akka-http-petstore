@@ -14,7 +14,11 @@ object Pet {
     type Status = Value
     val Available: Value = Value("available")
     val Pending: Value = Value("pending")
-    val Solid: Value = Value("solid")
+    val Sold: Value = Value("sold")
+    
+    def apply(s: String): Status = {
+      Value(s)
+    }
   }
 
   def toPet(pts: List[PetTable]): Option[Pet] = {

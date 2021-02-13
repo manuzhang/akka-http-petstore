@@ -19,6 +19,7 @@ package object controller {
         case Success(t) =>
           onSuccess(t)
         case Failure(e) =>
+          e.printStackTrace()
           reply400("Invalid input")
       }
     }
