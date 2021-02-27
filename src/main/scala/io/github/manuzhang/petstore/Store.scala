@@ -81,7 +81,7 @@ class Store {
       }
     }
   }
-  
+
   private def doUpdatePet(pet: Pet): Unit = {
     ctx.run(liftQuery(pet.petTable).foreach(p => query[PetTable].update(p)))
   }
