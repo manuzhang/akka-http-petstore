@@ -37,6 +37,6 @@ scalacOptions ++= Seq(
 )
 
 ThisBuild / githubWorkflowBuildPreamble := Seq(
-  WorkflowStep.Sbt(List("scalastyle", "test:scalastyle"), Some("Check scalastyle"))
+  WorkflowStep.Sbt(List("scalastyle", "test:scalastyle"), name = Some("Check scalastyle"))
 )
 ThisBuild / githubWorkflowPublishTargetBranches := Seq()
