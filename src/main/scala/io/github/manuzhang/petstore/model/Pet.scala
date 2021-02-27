@@ -15,7 +15,7 @@ object Pet {
     val Available: Value = Value("available")
     val Pending: Value = Value("pending")
     val Sold: Value = Value("sold")
-    
+
     def apply(s: String): Status = {
       Value(s)
     }

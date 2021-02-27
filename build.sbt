@@ -36,4 +36,7 @@ scalacOptions ++= Seq(
   "-Xfatal-warnings"
 )
 
+ThisBuild / githubWorkflowBuildPreamble := Seq(
+  WorkflowStep.Sbt(List("scalastyle", "test:scalastyle"), name = Some("Check scalastyle"))
+)
 ThisBuild / githubWorkflowPublishTargetBranches := Seq()
