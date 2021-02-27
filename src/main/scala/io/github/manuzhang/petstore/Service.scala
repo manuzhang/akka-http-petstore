@@ -4,8 +4,8 @@ import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.{ExceptionHandler, Route}
+import akka.http.scaladsl.server.Directives._
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives.cors
-import com.github.swagger.akka.SwaggerSite
 import fr.davit.akka.http.metrics.core.HttpMetrics.enrichHttp
 import fr.davit.akka.http.metrics.core.HttpMetricsRegistry
 import fr.davit.akka.http.metrics.core.scaladsl.server.HttpMetricsDirectives.pathLabeled
@@ -18,7 +18,8 @@ import scala.concurrent.Await
 import scala.concurrent.duration.Duration
 import scala.util.{Failure, Success}
 
-object Service extends SwaggerSite {
+
+object Service {
 
   private val LOG: Logger = LoggerFactory.getLogger(Service.getClass)
 
@@ -50,7 +51,6 @@ object Service extends SwaggerSite {
 
   def swagger: Route = {
     concat(
-      // this path is required by swaggerSiteRoute
       path("api-docs" / "openapi.yaml") {
         getFromResource("openapi.yaml")
       },
