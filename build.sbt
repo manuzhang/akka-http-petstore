@@ -35,3 +35,5 @@ scalacOptions ++= Seq(
   "-Ywarn-unused-import",
   "-Xfatal-warnings"
 )
+
+ThisBuild / githubWorkflowPublishTargetBranches := Seq()
