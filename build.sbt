@@ -15,7 +15,7 @@ libraryDependencies ++= Seq(
   "org.rogach" %% "scallop" % "3.5.1",
   "io.getquill" %% "quill-jdbc" % "3.5.3",
   "mysql" % "mysql-connector-java" % "8.0.17",
-  "com.h2database" % "h2" % "1.4.199",
+  "com.h2database" % "h2" % "1.4.200",
   "ch.qos.logback" % "logback-classic" % "1.2.3",
   "fr.davit" %% "akka-http-metrics-prometheus" % "1.4.1",
   "org.scalatest" %% "scalatest" % "3.2.2" % "test",
