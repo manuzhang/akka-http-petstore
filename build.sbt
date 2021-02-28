@@ -11,7 +11,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
   "ch.megard" %% "akka-http-cors" % "1.1.1",
   "com.typesafe.akka" %% "akka-stream" % akkaVersion,
-  "com.lihaoyi" %% "upickle" % "1.1.0",
+  "com.lihaoyi" %% "upickle" % "1.2.3",
   "org.rogach" %% "scallop" % "3.5.1",
   "io.getquill" %% "quill-jdbc" % "3.5.3",
   "mysql" % "mysql-connector-java" % "8.0.17",
