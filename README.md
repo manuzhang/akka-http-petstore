@@ -1,1 +1,1 @@
-# akka-http-petstore
+# akka-http-petstore [![Continuous Integration](https://github.com/manuzhang/akka-http-petstore/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/manuzhang/akka-http-petstore/actions/workflows/ci.yml)
