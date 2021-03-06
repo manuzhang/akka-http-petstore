@@ -1,9 +1,11 @@
+import com.typesafe.sbt.packager.docker.DockerChmodType
+
 name := "akka-http-petstore"
 organization := "io.github.manuzhang"
 scalaVersion := "2.12.12"
 version := "0.1.0-SNAPSHOT"
 
-enablePlugins(JavaServerAppPackaging)
+enablePlugins(JavaServerAppPackaging, DockerPlugin)
 
 lazy val akkaHttpVersion = "10.2.4"
 lazy val akkaVersion = "2.6.12"
@@ -26,6 +28,9 @@ libraryDependencies ++= Seq(
 mainClass in Compile := Some("io.github.manuzhang.petstore.Service")
 discoveredMainClasses in Compile := Seq()
 Test / fork := true
+
+dockerChmodType := DockerChmodType.UserGroupWriteExecute
+Docker / daemonUser := "manu"
 
 addCompilerPlugin(scalafixSemanticdb)
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.4.4"
