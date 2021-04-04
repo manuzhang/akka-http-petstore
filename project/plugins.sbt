@@ -1,6 +1,6 @@
 addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.8.1")
 
-addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.9.26")
+addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.9.27")
 
 addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "1.0.0")
 
