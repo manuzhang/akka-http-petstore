@@ -9,7 +9,7 @@ lazy val akkaHttpVersion = "10.2.4"
 lazy val akkaVersion = "2.6.12"
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
-  "ch.megard" %% "akka-http-cors" % "1.1.1",
+  "ch.megard" %% "akka-http-cors" % "1.1.2",
   "com.typesafe.akka" %% "akka-stream" % akkaVersion,
   "com.lihaoyi" %% "upickle" % "1.3.7",
   "org.rogach" %% "scallop" % "4.0.2",
