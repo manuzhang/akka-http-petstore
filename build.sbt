@@ -28,7 +28,7 @@ discoveredMainClasses in Compile := Seq()
 Test / fork := true
 
 addCompilerPlugin(scalafixSemanticdb)
-ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
+ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.6.0"
 scalacOptions ++= Seq(
   "-feature",
   "-language:existentials",
