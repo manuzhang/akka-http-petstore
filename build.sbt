@@ -18,7 +18,7 @@ libraryDependencies ++= Seq(
   "com.h2database" % "h2" % "1.4.200",
   "ch.qos.logback" % "logback-classic" % "1.2.3",
   "fr.davit" %% "akka-http-metrics-prometheus" % "1.5.1",
-  "org.scalatest" %% "scalatest" % "3.2.6" % "test",
+  "org.scalatest" %% "scalatest" % "3.2.10" % "test",
   "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpVersion % "test",
   "com.typesafe.akka" %% "akka-stream-testkit" % akkaVersion % "test"
 )
