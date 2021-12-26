@@ -1,6 +1,6 @@
 name := "akka-http-petstore"
 organization := "io.github.manuzhang"
-scalaVersion := "2.12.12"
+scalaVersion := "2.12.15"
 version := "0.1.0-SNAPSHOT"
 
 enablePlugins(JavaServerAppPackaging)
