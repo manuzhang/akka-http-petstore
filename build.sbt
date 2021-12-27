@@ -28,8 +28,11 @@ discoveredMainClasses in Compile := Seq()
 Test / fork := true
 
 addCompilerPlugin(scalafixSemanticdb)
+ThisBuild / semanticdbEnabled := true,
+ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
 scalacOptions ++= Seq(
+  "-Yrangeops", // required by SemanticDB compiler plugin
   "-feature",
   "-language:existentials",
   "-Ywarn-unused-import",
