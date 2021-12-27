@@ -23,8 +23,8 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-stream-testkit" % akkaVersion % "test"
 )
 
-mainClass in Compile := Some("io.github.manuzhang.petstore.Service")
-discoveredMainClasses in Compile := Seq()
+(Compile / mainClass) := Some("io.github.manuzhang.petstore.Service")
+(Compile / discoveredMainClasses) := Seq()
 Test / fork := true
 
 addCompilerPlugin(scalafixSemanticdb)
