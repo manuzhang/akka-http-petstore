@@ -1,7 +1,7 @@
-name := "akka-http-petstore"
-organization := "io.github.manuzhang"
-scalaVersion := "2.12.15"
-version := "0.1.0-SNAPSHOT"
+ThisBuild / name := "akka-http-petstore"
+ThisBuild / organization := "io.github.manuzhang"
+ThisBuild / scalaVersion := "2.12.15"
+ThisBuild/ version := "0.1.0-SNAPSHOT"
 
 enablePlugins(JavaServerAppPackaging)
 
@@ -28,8 +28,11 @@ discoveredMainClasses in Compile := Seq()
 Test / fork := true
 
 addCompilerPlugin(scalafixSemanticdb)
+ThisBuild / semanticdbEnabled := true
+ThisBuild / semanticdbVersion := "4.4.31"
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
 scalacOptions ++= Seq(
+  "-Yrangepos", // required by SemanticDB compiler plugin
   "-feature",
   "-language:existentials",
   "-Ywarn-unused-import",
