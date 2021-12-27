@@ -29,7 +29,7 @@ Test / fork := true
 
 addCompilerPlugin(scalafixSemanticdb)
 ThisBuild / semanticdbEnabled := true
-ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
+ThisBuild / semanticdbVersion := "4.4.31"
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
 scalacOptions ++= Seq(
   "-Yrangeops", // required by SemanticDB compiler plugin
