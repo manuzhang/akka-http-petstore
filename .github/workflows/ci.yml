@@ -49,8 +49,5 @@ jobs:
       - name: Check scalastyle
         run: 'sbt ++${{ matrix.scala }} scalastyle test:scalastyle'
 
-      - name: Check that workflows are up to date
-        run: sbt ++${{ matrix.scala }} githubWorkflowCheck
-
       - name: Build project
         run: sbt ++${{ matrix.scala }} test
