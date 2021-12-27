@@ -32,7 +32,7 @@ ThisBuild / semanticdbEnabled := true
 ThisBuild / semanticdbVersion := "4.4.31"
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
 scalacOptions ++= Seq(
-  "-Yrangeops", // required by SemanticDB compiler plugin
+  "-Yrangepos", // required by SemanticDB compiler plugin
   "-feature",
   "-language:existentials",
   "-Ywarn-unused-import",
