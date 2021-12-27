@@ -39,5 +39,4 @@ scalacOptions ++= Seq(
 ThisBuild / githubWorkflowBuildPreamble := Seq(
   WorkflowStep.Sbt(List("scalastyle", "test:scalastyle"), name = Some("Check scalastyle"))
 )
-ThisBuild / githubWorkflowJavaVersions := Seq("8", "11", "16", "17").map(v => JavaSpec.temurin(v))
 ThisBuild / githubWorkflowPublishTargetBranches := Seq()
