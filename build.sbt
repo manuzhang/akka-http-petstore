@@ -14,7 +14,7 @@ libraryDependencies ++= Seq(
   "com.lihaoyi" %% "upickle" % "1.3.7",
   "org.rogach" %% "scallop" % "4.0.2",
   "io.getquill" %% "quill-jdbc" % "3.7.0",
-  "mysql" % "mysql-connector-java" % "8.0.23",
+  "mysql" % "mysql-connector-java" % "8.0.27",
   "com.h2database" % "h2" % "2.0.204",
   "ch.qos.logback" % "logback-classic" % "1.2.10",
   "fr.davit" %% "akka-http-metrics-prometheus" % "1.5.1",
