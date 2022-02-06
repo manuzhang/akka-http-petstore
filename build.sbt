@@ -17,7 +17,7 @@ libraryDependencies ++= Seq(
   "mysql" % "mysql-connector-java" % "8.0.23",
   "com.h2database" % "h2" % "2.0.204",
   "ch.qos.logback" % "logback-classic" % "1.2.10",
-  "fr.davit" %% "akka-http-metrics-prometheus" % "1.5.1",
+  "fr.davit" %% "akka-http-metrics-prometheus" % "1.6.0",
   "org.scalatest" %% "scalatest" % "3.2.10" % "test",
   "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpVersion % "test",
   "com.typesafe.akka" %% "akka-stream-testkit" % akkaVersion % "test"
