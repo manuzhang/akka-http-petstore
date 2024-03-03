@@ -16,7 +16,7 @@ libraryDependencies ++= Seq(
   "io.getquill" %% "quill-jdbc" % "3.7.2",
   "mysql" % "mysql-connector-java" % "8.0.32",
   "com.h2database" % "h2" % "2.1.214",
-  "ch.qos.logback" % "logback-classic" % "1.5.0",
+  "ch.qos.logback" % "logback-classic" % "1.5.2",
   "fr.davit" %% "akka-http-metrics-prometheus" % "1.6.0",
   "org.scalatest" %% "scalatest" % "3.2.18" % "test",
   "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpVersion % "test",
