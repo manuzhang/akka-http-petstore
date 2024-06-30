@@ -4,4 +4,4 @@ addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.9.34")
 
 addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "1.0.0")
 
-addSbtPlugin("com.github.sbt" % "sbt-github-actions" % "0.23.0")
+addSbtPlugin("com.github.sbt" % "sbt-github-actions" % "0.24.0")
