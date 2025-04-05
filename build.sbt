@@ -6,7 +6,7 @@ ThisBuild/ version := "0.1.0-SNAPSHOT"
 enablePlugins(JavaServerAppPackaging)
 
 lazy val akkaHttpVersion = "10.2.7"
-lazy val akkaVersion = "2.6.18"
+lazy val akkaVersion = "2.6.20"
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
   "ch.megard" %% "akka-http-cors" % "1.1.3",
